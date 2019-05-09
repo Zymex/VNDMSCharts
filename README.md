@@ -9,20 +9,30 @@ For example
 
 TopDefectElements
 ```
-public class TopDefectsElement
+public class RawDataElements
     {
-        public int RowNumber { get; set; }
-        public int Quantity { get; set; }
-        public int Accum { get; set; }
-        public int Acc { get; set; }
-        public string NCCode { get; set; }
-        public string NCDes { get; set; }
+        public long Id { get; set; }
+        public DateTime? Date { get; set; }
+        public string Part { get; set; }
+        public string Wo { get; set; }
+        public string Lot { get; set; }
+        public string Plate { get; set; }
+        public string OperatorId { get; set; }
+        public int? F2 { get; set; }
+        public int? EngIndex { get; set; }
+        public string Note2 { get; set; }
+        public string Rs2 { get; set; }
+        public int? F3 { get; set; }
+        public string Note3 { get; set; }
+        public string Rs3 { get; set; }
+        public string Family { get; set; }
         public string Type { get; set; }
+        public decimal USL { get; set; }
     }
 ```    
 In our Context we will tell the program that our Model is represented as the View in the Database, we do so like this.
  public virtual DbQuery<TopDefectsElement> TopDefectsElements { get; set; } - We use DbQuery to Define that we are calling a view.
- modelBuilder.Query<TopDefectsElement>().ToView("v_TopDefectsElement"); - We then get the name of the ACTUAL view and pass it as a string paramater.
+ modelBuilder.Query<TopDefectsElement>().ToView("v_TopDefectsElement"); - We then get the name of the ACTUAL view and pass it as a string paramater. "v_TopDefectsElement"
 
 In our Extention Method we call
 ```
@@ -57,9 +67,23 @@ And we call this in our controller.
         }
     }
 ```
-Giving us this.
+
+
+Now we can either call all the data by accessing the link
+
+DataAPI/vn/RawElements/ (in my case)
+Now you can do stuff like this
+
+DataAPI/vn/RawElements/N/MAM
+DataAPI/vn/RawElements/P/MAM
+DataAPI/vn/RawElements/P/Plated
+DataAPI/vn/RawElements/N/Plated
+
+Returning only the data we need for our charting solutions.
 ```
-{"rowNumber":1,"quantity":1369775,"accum":1369775,"acc":38,"ncCode":"EWOS","ncDes":"ELEMENT WIDTH OUT OF SPEC","type":"TAN"}
+{"id":466,"date":"2013-11-23T00:00:00","part":"486-4001-022","wo":"37406","lot":"WUN775D","plate":"+1","operatorId":"960","f2":null,"engIndex":null,"note2":"","rs2":"","f3":null,"note3":"","rs3":"","family":"MAM","type":"N","usl":6.00000}
+
+
 ```
 
 
