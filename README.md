@@ -75,8 +75,11 @@ DataAPI/vn/RawElements/ (in my case)
 Now you can do stuff like this
 
 DataAPI/vn/RawElements/N/MAM
+
 DataAPI/vn/RawElements/P/MAM
+
 DataAPI/vn/RawElements/P/Plated
+
 DataAPI/vn/RawElements/N/Plated
 
 Returning only the data we need for our charting solutions.
